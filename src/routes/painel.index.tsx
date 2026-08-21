@@ -57,6 +57,7 @@ const pieColors = [
 
 function Overview() {
   const naRegua = carts.filter((c) => c.status === "na-regua").slice(0, 5);
+  const topAction = [...diagnoses].sort((a, b) => b.impacto - a.impacto)[0]!;
 
   return (
     <>
