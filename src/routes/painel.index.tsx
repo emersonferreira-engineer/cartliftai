@@ -282,8 +282,8 @@ function Overview() {
             <div>
               <h2 className="text-base font-semibold">Próxima melhor ação sugerida pela IA</h2>
               <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
-                {diagnoses[1].acao} — projeção de {brl(diagnoses[1].impacto)} por mês em receita adicional
-                para {diagnoses[1].categoria}.
+                {topAction.acao} — projeção de {brl(topAction.impacto)} por mês em receita adicional
+                para {topAction.categoria}.
               </p>
             </div>
           </div>
