@@ -14,6 +14,7 @@ import { Route as PainelRouteImport } from './routes/painel'
 import { Route as PainelIndexRouteImport } from './routes/painel.index'
 import { Route as PainelCarrinhosRouteImport } from './routes/painel.carrinhos'
 import { Route as PainelDiagnosticoRouteImport } from './routes/painel.diagnostico'
+import { Route as PainelEnviosRouteImport } from './routes/painel.envios'
 import { Route as PainelOtimizacaoRouteImport } from './routes/painel.otimizacao'
 import { Route as PainelReguaRouteImport } from './routes/painel.regua'
 import { Route as PainelRelatorioRouteImport } from './routes/painel.relatorio'
@@ -44,6 +45,11 @@ const PainelDiagnosticoRoute = PainelDiagnosticoRouteImport.update({
   path: '/diagnostico',
   getParentRoute: () => PainelRoute,
 } as any)
+const PainelEnviosRoute = PainelEnviosRouteImport.update({
+  id: '/envios',
+  path: '/envios',
+  getParentRoute: () => PainelRoute,
+} as any)
 const PainelOtimizacaoRoute = PainelOtimizacaoRouteImport.update({
   id: '/otimizacao',
   path: '/otimizacao',
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/painel': typeof PainelRouteWithChildren
   '/painel/carrinhos': typeof PainelCarrinhosRoute
   '/painel/diagnostico': typeof PainelDiagnosticoRoute
+  '/painel/envios': typeof PainelEnviosRoute
   '/painel/otimizacao': typeof PainelOtimizacaoRoute
   '/painel/regua': typeof PainelReguaRoute
   '/painel/relatorio': typeof PainelRelatorioRoute
@@ -80,6 +87,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/painel/carrinhos': typeof PainelCarrinhosRoute
   '/painel/diagnostico': typeof PainelDiagnosticoRoute
+  '/painel/envios': typeof PainelEnviosRoute
   '/painel/otimizacao': typeof PainelOtimizacaoRoute
   '/painel/regua': typeof PainelReguaRoute
   '/painel/relatorio': typeof PainelRelatorioRoute
@@ -92,6 +100,7 @@ export interface FileRoutesById {
   '/painel': typeof PainelRouteWithChildren
   '/painel/carrinhos': typeof PainelCarrinhosRoute
   '/painel/diagnostico': typeof PainelDiagnosticoRoute
+  '/painel/envios': typeof PainelEnviosRoute
   '/painel/otimizacao': typeof PainelOtimizacaoRoute
   '/painel/regua': typeof PainelReguaRoute
   '/painel/relatorio': typeof PainelRelatorioRoute
@@ -105,6 +114,7 @@ export interface FileRouteTypes {
     | '/painel'
     | '/painel/carrinhos'
     | '/painel/diagnostico'
+    | '/painel/envios'
     | '/painel/otimizacao'
     | '/painel/regua'
     | '/painel/relatorio'
@@ -115,6 +125,7 @@ export interface FileRouteTypes {
     | '/'
     | '/painel/carrinhos'
     | '/painel/diagnostico'
+    | '/painel/envios'
     | '/painel/otimizacao'
     | '/painel/regua'
     | '/painel/relatorio'
@@ -126,6 +137,7 @@ export interface FileRouteTypes {
     | '/painel'
     | '/painel/carrinhos'
     | '/painel/diagnostico'
+    | '/painel/envios'
     | '/painel/otimizacao'
     | '/painel/regua'
     | '/painel/relatorio'
@@ -175,6 +187,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PainelDiagnosticoRouteImport
       parentRoute: typeof PainelRoute
     }
+    '/painel/envios': {
+      id: '/painel/envios'
+      path: '/envios'
+      fullPath: '/painel/envios'
+      preLoaderRoute: typeof PainelEnviosRouteImport
+      parentRoute: typeof PainelRoute
+    }
     '/painel/otimizacao': {
       id: '/painel/otimizacao'
       path: '/otimizacao'
@@ -209,6 +228,7 @@ declare module '@tanstack/react-router' {
 interface PainelRouteChildren {
   PainelCarrinhosRoute: typeof PainelCarrinhosRoute
   PainelDiagnosticoRoute: typeof PainelDiagnosticoRoute
+  PainelEnviosRoute: typeof PainelEnviosRoute
   PainelOtimizacaoRoute: typeof PainelOtimizacaoRoute
   PainelReguaRoute: typeof PainelReguaRoute
   PainelRelatorioRoute: typeof PainelRelatorioRoute
@@ -219,6 +239,7 @@ interface PainelRouteChildren {
 const PainelRouteChildren: PainelRouteChildren = {
   PainelCarrinhosRoute: PainelCarrinhosRoute,
   PainelDiagnosticoRoute: PainelDiagnosticoRoute,
+  PainelEnviosRoute: PainelEnviosRoute,
   PainelOtimizacaoRoute: PainelOtimizacaoRoute,
   PainelReguaRoute: PainelReguaRoute,
   PainelRelatorioRoute: PainelRelatorioRoute,
