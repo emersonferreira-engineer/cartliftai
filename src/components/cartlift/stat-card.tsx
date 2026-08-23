@@ -50,7 +50,7 @@ export function StatCard({
               positive ? "bg-success-soft text-success" : "bg-warning-soft text-warning-foreground",
             )}
           >
-            {positive ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
+            {rising ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
             {delta > 0 ? "+" : ""}
             {delta.toLocaleString("pt-BR", { maximumFractionDigits: 1 })}%
           </span>
