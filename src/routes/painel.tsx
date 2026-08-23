@@ -10,6 +10,8 @@ import {
   LogOut,
   Menu,
   Search,
+  Send,
+
   Settings2,
   ShieldCheck,
   ShoppingCart,
