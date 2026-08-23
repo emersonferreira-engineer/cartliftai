@@ -573,3 +573,297 @@ export const brl = (value: number) =>
 
 export const brlExact = (value: number) =>
   value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
+/* ---------------------------------------------------------------
+ * Histórico de envios por cliente (e-mail e WhatsApp)
+ * ------------------------------------------------------------- */
+
+export type SendChannel = "E-mail" | "WhatsApp";
+export type SendStatus = "enviado" | "entregue" | "clicado" | "respondido";
+
+export type SendEvent = {
+  id: string;
+  cartId: string;
+  cliente: string;
+  contato: string;
+  canal: SendChannel;
+  etapa: string;
+  assunto: string;
+  enviadoEm: string;
+  status: SendStatus;
+  timeline: { status: SendStatus; em: string }[];
+};
+
+export const sendStatusLabels: Record<SendStatus, string> = {
+  enviado: "Enviado",
+  entregue: "Entregue",
+  clicado: "Clicado",
+  respondido: "Respondido",
+};
+
+export const sendHistory: SendEvent[] = [
+  {
+    id: "EV-9012",
+    cartId: "CL-4821",
+    cliente: "Juliana Marques",
+    contato: "juliana.marques@gmail.com",
+    canal: "E-mail",
+    etapa: "E-mail 1h",
+    assunto: "Seu Sérum Vitamina C ficou esperando 💛",
+    enviadoEm: "20/08 09:12",
+    status: "clicado",
+    timeline: [
+      { status: "enviado", em: "20/08 09:12" },
+      { status: "entregue", em: "20/08 09:12" },
+      { status: "clicado", em: "20/08 10:41" },
+    ],
+  },
+  {
+    id: "EV-9011",
+    cartId: "CL-4821",
+    cliente: "Juliana Marques",
+    contato: "+55 11 98842-3310",
+    canal: "WhatsApp",
+    etapa: "WhatsApp 24h",
+    assunto: "Frete grátis acima de R$ 249 para o seu CEP",
+    enviadoEm: "21/08 10:05",
+    status: "respondido",
+    timeline: [
+      { status: "enviado", em: "21/08 10:05" },
+      { status: "entregue", em: "21/08 10:05" },
+      { status: "clicado", em: "21/08 10:22" },
+      { status: "respondido", em: "21/08 10:29" },
+    ],
+  },
+  {
+    id: "EV-9008",
+    cartId: "CL-4818",
+    cliente: "Camila Bezerra",
+    contato: "camila.bezerra@outlook.com",
+    canal: "E-mail",
+    etapa: "E-mail 1h",
+    assunto: "Ainda em dúvida no tom do Batom Matte Rosé?",
+    enviadoEm: "20/08 14:38",
+    status: "entregue",
+    timeline: [
+      { status: "enviado", em: "20/08 14:38" },
+      { status: "entregue", em: "20/08 14:39" },
+    ],
+  },
+  {
+    id: "EV-9004",
+    cartId: "CL-4805",
+    cliente: "Renata Alcântara",
+    contato: "+55 31 98550-1287",
+    canal: "WhatsApp",
+    etapa: "WhatsApp 24h",
+    assunto: "Cupom exclusivo de 8% no Nuit Absolu",
+    enviadoEm: "19/08 18:20",
+    status: "clicado",
+    timeline: [
+      { status: "enviado", em: "19/08 18:20" },
+      { status: "entregue", em: "19/08 18:21" },
+      { status: "clicado", em: "19/08 21:03" },
+    ],
+  },
+  {
+    id: "EV-9001",
+    cartId: "CL-4805",
+    cliente: "Renata Alcântara",
+    contato: "renata.alcantara@gmail.com",
+    canal: "E-mail",
+    etapa: "E-mail 1h",
+    assunto: "Seu perfume favorito ainda está reservado",
+    enviadoEm: "19/08 09:44",
+    status: "entregue",
+    timeline: [
+      { status: "enviado", em: "19/08 09:44" },
+      { status: "entregue", em: "19/08 09:45" },
+    ],
+  },
+  {
+    id: "EV-8996",
+    cartId: "CL-4799",
+    cliente: "Thiago Nogueira",
+    contato: "+55 41 99604-7712",
+    canal: "WhatsApp",
+    etapa: "WhatsApp 24h",
+    assunto: "Finalize sem cadastro: checkout em 1 clique",
+    enviadoEm: "19/08 16:12",
+    status: "enviado",
+    timeline: [{ status: "enviado", em: "19/08 16:12" }],
+  },
+  {
+    id: "EV-8990",
+    cartId: "CL-4780",
+    cliente: "Patrícia Lemos",
+    contato: "+55 51 98233-6640",
+    canal: "WhatsApp",
+    etapa: "WhatsApp 5d",
+    assunto: "Última chance no kit infantil (estoque baixo)",
+    enviadoEm: "21/08 11:02",
+    status: "entregue",
+    timeline: [
+      { status: "enviado", em: "21/08 11:02" },
+      { status: "entregue", em: "21/08 11:03" },
+    ],
+  },
+  {
+    id: "EV-8987",
+    cartId: "CL-4776",
+    cliente: "Aline Cavalcanti",
+    contato: "aline.cavalcanti@gmail.com",
+    canal: "E-mail",
+    etapa: "E-mail 48h",
+    assunto: "Frete grátis liberado no seu Kit Anti-idade",
+    enviadoEm: "17/08 08:30",
+    status: "clicado",
+    timeline: [
+      { status: "enviado", em: "17/08 08:30" },
+      { status: "entregue", em: "17/08 08:31" },
+      { status: "clicado", em: "17/08 12:58" },
+    ],
+  },
+  {
+    id: "EV-8981",
+    cartId: "CL-4776",
+    cliente: "Aline Cavalcanti",
+    contato: "+55 85 98470-2219",
+    canal: "WhatsApp",
+    etapa: "WhatsApp 5d",
+    assunto: "Posso reservar seu kit por 24h?",
+    enviadoEm: "21/08 09:15",
+    status: "respondido",
+    timeline: [
+      { status: "enviado", em: "21/08 09:15" },
+      { status: "entregue", em: "21/08 09:15" },
+      { status: "clicado", em: "21/08 09:40" },
+      { status: "respondido", em: "21/08 09:52" },
+    ],
+  },
+  {
+    id: "EV-8975",
+    cartId: "CL-4770",
+    cliente: "Marcos Vinícius Prado",
+    contato: "mv.prado@gmail.com",
+    canal: "E-mail",
+    etapa: "E-mail 48h",
+    assunto: "Kit Barba & Pele com avaliações 4,9★",
+    enviadoEm: "18/08 07:50",
+    status: "entregue",
+    timeline: [
+      { status: "enviado", em: "18/08 07:50" },
+      { status: "entregue", em: "18/08 07:51" },
+    ],
+  },
+  {
+    id: "EV-8969",
+    cartId: "CL-4762",
+    cliente: "Fernanda Ribeiro",
+    contato: "+55 11 97722-1189",
+    canal: "WhatsApp",
+    etapa: "WhatsApp 24h",
+    assunto: "Sua paleta nude ainda está no carrinho",
+    enviadoEm: "18/08 19:04",
+    status: "respondido",
+    timeline: [
+      { status: "enviado", em: "18/08 19:04" },
+      { status: "entregue", em: "18/08 19:04" },
+      { status: "clicado", em: "18/08 19:22" },
+      { status: "respondido", em: "18/08 19:31" },
+    ],
+  },
+  {
+    id: "EV-8962",
+    cartId: "CL-4755",
+    cliente: "Larissa Andrade",
+    contato: "larissa.andrade@yahoo.com",
+    canal: "E-mail",
+    etapa: "Cupom 10% segmentado",
+    assunto: "10% off no Vanille Rouge — só hoje",
+    enviadoEm: "17/08 10:10",
+    status: "respondido",
+    timeline: [
+      { status: "enviado", em: "17/08 10:10" },
+      { status: "entregue", em: "17/08 10:10" },
+      { status: "clicado", em: "17/08 10:35" },
+      { status: "respondido", em: "17/08 10:58" },
+    ],
+  },
+  {
+    id: "EV-8955",
+    cartId: "CL-4741",
+    cliente: "Beatriz Sampaio",
+    contato: "bia.sampaio@gmail.com",
+    canal: "E-mail",
+    etapa: "E-mail 48h",
+    assunto: "Seu gloss favorito voltou ao estoque",
+    enviadoEm: "13/08 09:00",
+    status: "enviado",
+    timeline: [{ status: "enviado", em: "13/08 09:00" }],
+  },
+  {
+    id: "EV-8949",
+    cartId: "CL-4736",
+    cliente: "Sofia Menezes",
+    contato: "sofia.menezes@gmail.com",
+    canal: "E-mail",
+    etapa: "E-mail 1h",
+    assunto: "Faltou 1 passo para fechar seu kit skincare",
+    enviadoEm: "20/08 15:26",
+    status: "clicado",
+    timeline: [
+      { status: "enviado", em: "20/08 15:26" },
+      { status: "entregue", em: "20/08 15:26" },
+      { status: "clicado", em: "20/08 16:12" },
+    ],
+  },
+  {
+    id: "EV-8941",
+    cartId: "CL-4728",
+    cliente: "Gustavo Rocha",
+    contato: "+55 11 98004-7719",
+    canal: "WhatsApp",
+    etapa: "WhatsApp 24h",
+    assunto: "Oud Royale com brinde de kit presente",
+    enviadoEm: "19/08 20:41",
+    status: "clicado",
+    timeline: [
+      { status: "enviado", em: "19/08 20:41" },
+      { status: "entregue", em: "19/08 20:41" },
+      { status: "clicado", em: "19/08 22:14" },
+    ],
+  },
+  {
+    id: "EV-8933",
+    cartId: "CL-4719",
+    cliente: "Helena Duarte",
+    contato: "+55 19 99655-3312",
+    canal: "WhatsApp",
+    etapa: "WhatsApp 5d",
+    assunto: "Checkout como convidado liberado",
+    enviadoEm: "21/08 08:12",
+    status: "entregue",
+    timeline: [
+      { status: "enviado", em: "21/08 08:12" },
+      { status: "entregue", em: "21/08 08:12" },
+    ],
+  },
+  {
+    id: "EV-8927",
+    cartId: "CL-4712",
+    cliente: "Vanessa Portela",
+    contato: "vanessa.portela@gmail.com",
+    canal: "E-mail",
+    etapa: "Frete grátis progressivo",
+    assunto: "Frete grátis aplicado no seu carrinho",
+    enviadoEm: "14/08 11:47",
+    status: "respondido",
+    timeline: [
+      { status: "enviado", em: "14/08 11:47" },
+      { status: "entregue", em: "14/08 11:47" },
+      { status: "clicado", em: "14/08 12:05" },
+      { status: "respondido", em: "14/08 12:20" },
+    ],
+  },
+];
