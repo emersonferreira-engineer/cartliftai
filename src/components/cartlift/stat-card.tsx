@@ -30,7 +30,8 @@ export function StatCard({
   tone?: Tone;
 }) {
   const styles = toneStyles[tone];
-  const positive = deltaGood ?? (delta ?? 0) >= 0;
+  const rising = (delta ?? 0) >= 0;
+  const positive = deltaGood ?? rising;
 
   return (
     <article className="card-surface hover-lift p-5">
