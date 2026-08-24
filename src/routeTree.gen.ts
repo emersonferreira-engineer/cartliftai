@@ -20,6 +20,7 @@ import { Route as PainelReguaRouteImport } from './routes/painel.regua'
 import { Route as PainelRelatorioRouteImport } from './routes/painel.relatorio'
 import { Route as PainelSegurancaRouteImport } from './routes/painel.seguranca'
 import { Route as PainelShopifyRouteImport } from './routes/painel.shopify'
+import { Route as PainelTemplatesRouteImport } from './routes/painel.templates'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -76,6 +77,11 @@ const PainelShopifyRoute = PainelShopifyRouteImport.update({
   path: '/shopify',
   getParentRoute: () => PainelRoute,
 } as any)
+const PainelTemplatesRoute = PainelTemplatesRouteImport.update({
+  id: '/templates',
+  path: '/templates',
+  getParentRoute: () => PainelRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -88,6 +94,7 @@ export interface FileRoutesByFullPath {
   '/painel/relatorio': typeof PainelRelatorioRoute
   '/painel/seguranca': typeof PainelSegurancaRoute
   '/painel/shopify': typeof PainelShopifyRoute
+  '/painel/templates': typeof PainelTemplatesRoute
   '/painel/': typeof PainelIndexRoute
 }
 export interface FileRoutesByTo {
@@ -100,6 +107,7 @@ export interface FileRoutesByTo {
   '/painel/relatorio': typeof PainelRelatorioRoute
   '/painel/seguranca': typeof PainelSegurancaRoute
   '/painel/shopify': typeof PainelShopifyRoute
+  '/painel/templates': typeof PainelTemplatesRoute
   '/painel': typeof PainelIndexRoute
 }
 export interface FileRoutesById {
@@ -114,6 +122,7 @@ export interface FileRoutesById {
   '/painel/relatorio': typeof PainelRelatorioRoute
   '/painel/seguranca': typeof PainelSegurancaRoute
   '/painel/shopify': typeof PainelShopifyRoute
+  '/painel/templates': typeof PainelTemplatesRoute
   '/painel/': typeof PainelIndexRoute
 }
 export interface FileRouteTypes {
@@ -129,6 +138,7 @@ export interface FileRouteTypes {
     | '/painel/relatorio'
     | '/painel/seguranca'
     | '/painel/shopify'
+    | '/painel/templates'
     | '/painel/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -141,6 +151,7 @@ export interface FileRouteTypes {
     | '/painel/relatorio'
     | '/painel/seguranca'
     | '/painel/shopify'
+    | '/painel/templates'
     | '/painel'
   id:
     | '__root__'
@@ -154,6 +165,7 @@ export interface FileRouteTypes {
     | '/painel/relatorio'
     | '/painel/seguranca'
     | '/painel/shopify'
+    | '/painel/templates'
     | '/painel/'
   fileRoutesById: FileRoutesById
 }
@@ -241,6 +253,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PainelShopifyRouteImport
       parentRoute: typeof PainelRoute
     }
+    '/painel/templates': {
+      id: '/painel/templates'
+      path: '/templates'
+      fullPath: '/painel/templates'
+      preLoaderRoute: typeof PainelTemplatesRouteImport
+      parentRoute: typeof PainelRoute
+    }
   }
 }
 
@@ -253,6 +272,7 @@ interface PainelRouteChildren {
   PainelRelatorioRoute: typeof PainelRelatorioRoute
   PainelSegurancaRoute: typeof PainelSegurancaRoute
   PainelShopifyRoute: typeof PainelShopifyRoute
+  PainelTemplatesRoute: typeof PainelTemplatesRoute
   PainelIndexRoute: typeof PainelIndexRoute
 }
 
@@ -265,6 +285,7 @@ const PainelRouteChildren: PainelRouteChildren = {
   PainelRelatorioRoute: PainelRelatorioRoute,
   PainelSegurancaRoute: PainelSegurancaRoute,
   PainelShopifyRoute: PainelShopifyRoute,
+  PainelTemplatesRoute: PainelTemplatesRoute,
   PainelIndexRoute: PainelIndexRoute,
 }
 

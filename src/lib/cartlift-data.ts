@@ -867,3 +867,99 @@ export const sendHistory: SendEvent[] = [
     ],
   },
 ];
+
+/* ---------------------------------------------------------------- */
+/* Templates de mensagem (e-mail e WhatsApp) com variáveis dinâmicas */
+/* ---------------------------------------------------------------- */
+
+export type TemplateVariableKey =
+  | "nome_cliente"
+  | "produto"
+  | "frete_estimado"
+  | "cupom";
+
+export type TemplateVariable = {
+  key: TemplateVariableKey;
+  token: string;
+  label: string;
+  descricao: string;
+  exemplo: string;
+};
+
+export const templateVariables: TemplateVariable[] = [
+  {
+    key: "nome_cliente",
+    token: "{{nome_cliente}}",
+    label: "Nome do cliente",
+    descricao: "Primeiro nome de quem abandonou o carrinho.",
+    exemplo: "Juliana",
+  },
+  {
+    key: "produto",
+    token: "{{produto}}",
+    label: "Produto",
+    descricao: "Item de maior valor no carrinho.",
+    exemplo: "Sérum Vitamina C 30ml",
+  },
+  {
+    key: "frete_estimado",
+    token: "{{frete_estimado}}",
+    label: "Frete estimado",
+    descricao: "Frete calculado pelo CEP do cliente.",
+    exemplo: "R$ 18,90",
+  },
+  {
+    key: "cupom",
+    token: "{{cupom}}",
+    label: "Cupom",
+    descricao: "Cupom liberado pela regra de valor do carrinho.",
+    exemplo: "VOLTA10",
+  },
+];
+
+export type MessageTemplate = {
+  id: string;
+  nome: string;
+  canal: SendChannel;
+  etapa: string;
+  assunto: string;
+  corpo: string;
+  ativo: boolean;
+  atualizadoEm: string;
+};
+
+export const messageTemplates: MessageTemplate[] = [
+  {
+    id: "tpl-email-1",
+    nome: "Lembrete gentil (1ª hora)",
+    canal: "E-mail",
+    etapa: "Etapa 1 · 1h após o abandono",
+    assunto: "{{nome_cliente}}, seu {{produto}} ainda está reservado",
+    corpo:
+      "Oi {{nome_cliente}}, tudo bem?\n\nSeparamos o seu {{produto}} e ele continua no carrinho esperando por você.\n\nO frete para o seu endereço fica em {{frete_estimado}} e a entrega acontece em poucos dias úteis.\n\nQuer finalizar agora? É só clicar no botão abaixo e o carrinho volta pronto, com tudo do jeito que você deixou.\n\nQualquer dúvida, responda este e-mail — a gente lê de verdade.\n\nEquipe Belle Aura",
+    ativo: true,
+    atualizadoEm: "22/08 09:12",
+  },
+  {
+    id: "tpl-whats-1",
+    nome: "WhatsApp com cupom (24h)",
+    canal: "WhatsApp",
+    etapa: "Etapa 2 · 24h após o abandono",
+    assunto: "Recuperação com incentivo",
+    corpo:
+      "Oi {{nome_cliente}}! 💛\n\nVi que você deixou o {{produto}} no carrinho da Belle Aura.\n\nLiberei o cupom {{cupom}} para você fechar hoje, e o frete sai por {{frete_estimado}}.\n\nQuer que eu finalize o pedido por aqui?",
+    ativo: true,
+    atualizadoEm: "23/08 16:40",
+  },
+  {
+    id: "tpl-email-2",
+    nome: "Última chance (72h)",
+    canal: "E-mail",
+    etapa: "Etapa 3 · 72h após o abandono",
+    assunto: "Última chance: {{cupom}} expira hoje, {{nome_cliente}}",
+    corpo:
+      "{{nome_cliente}}, este é o último aviso sobre o seu carrinho.\n\nO {{produto}} sai do estoque reservado hoje à noite e o cupom {{cupom}} expira junto.\n\nFrete estimado: {{frete_estimado}}.\n\nSe preferir trocar por outro item, responda aqui que ajudamos na escolha.\n\nEquipe Belle Aura",
+    ativo: false,
+    atualizadoEm: "20/08 11:05",
+  },
+];
