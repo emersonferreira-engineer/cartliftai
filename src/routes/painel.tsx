@@ -15,7 +15,9 @@ import {
   Settings2,
   ShieldCheck,
   ShoppingCart,
+  Store,
   X,
+
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
