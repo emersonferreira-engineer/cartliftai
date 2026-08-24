@@ -15,7 +15,9 @@ import {
   Settings2,
   ShieldCheck,
   ShoppingCart,
+  Store,
   X,
+
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -37,7 +39,9 @@ const nav = [
   { to: "/painel/otimizacao", label: "Otimização de site", icon: Globe2 },
   { to: "/painel/relatorio", label: "Relatório semanal", icon: FileText },
   { to: "/painel/regua", label: "Régua de comunicação", icon: Settings2 },
+  { to: "/painel/shopify", label: "Integração Shopify", icon: Store },
   { to: "/painel/seguranca", label: "Segurança", icon: ShieldCheck },
+
 ] as const;
 
 function PainelLayout() {
