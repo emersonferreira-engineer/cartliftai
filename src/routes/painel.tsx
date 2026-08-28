@@ -9,8 +9,10 @@ import {
   LayoutDashboard,
   LogOut,
   Menu,
+  PenLine,
   Search,
   Send,
+
 
   Settings2,
   ShieldCheck,
@@ -34,6 +36,8 @@ const nav = [
   { to: "/painel", label: "Visão geral", icon: LayoutDashboard, exact: true },
   { to: "/painel/carrinhos", label: "Carrinhos abandonados", icon: ShoppingCart },
   { to: "/painel/envios", label: "Histórico de envios", icon: Send },
+  { to: "/painel/templates", label: "Editor de templates", icon: PenLine },
+
 
   { to: "/painel/diagnostico", label: "Diagnóstico por IA", icon: Brain },
   { to: "/painel/otimizacao", label: "Otimização de site", icon: Globe2 },
