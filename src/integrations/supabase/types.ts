@@ -14,7 +14,147 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      live_carts: {
+        Row: {
+          abandoned_at: string
+          created_at: string
+          currency: string
+          customer_email: string | null
+          customer_name: string | null
+          customer_phone: string | null
+          external_id: string
+          id: string
+          items: Json
+          status: string
+          total: number
+          updated_at: string
+        }
+        Insert: {
+          abandoned_at?: string
+          created_at?: string
+          currency?: string
+          customer_email?: string | null
+          customer_name?: string | null
+          customer_phone?: string | null
+          external_id: string
+          id?: string
+          items?: Json
+          status?: string
+          total?: number
+          updated_at?: string
+        }
+        Update: {
+          abandoned_at?: string
+          created_at?: string
+          currency?: string
+          customer_email?: string | null
+          customer_name?: string | null
+          customer_phone?: string | null
+          external_id?: string
+          id?: string
+          items?: Json
+          status?: string
+          total?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      product_changes: {
+        Row: {
+          change_type: string
+          id: string
+          new_value: string | null
+          occurred_at: string
+          old_value: string | null
+          product_id: string | null
+          product_title: string
+          variant_title: string | null
+        }
+        Insert: {
+          change_type: string
+          id?: string
+          new_value?: string | null
+          occurred_at?: string
+          old_value?: string | null
+          product_id?: string | null
+          product_title: string
+          variant_title?: string | null
+        }
+        Update: {
+          change_type?: string
+          id?: string
+          new_value?: string | null
+          occurred_at?: string
+          old_value?: string | null
+          product_id?: string | null
+          product_title?: string
+          variant_title?: string | null
+        }
+        Relationships: []
+      }
+      regua_events: {
+        Row: {
+          cart_external_id: string | null
+          channel: string
+          customer_email: string | null
+          customer_name: string | null
+          id: string
+          occurred_at: string
+          revenue: number
+          status: string
+          template_id: string | null
+          variant: string | null
+        }
+        Insert: {
+          cart_external_id?: string | null
+          channel: string
+          customer_email?: string | null
+          customer_name?: string | null
+          id?: string
+          occurred_at?: string
+          revenue?: number
+          status: string
+          template_id?: string | null
+          variant?: string | null
+        }
+        Update: {
+          cart_external_id?: string | null
+          channel?: string
+          customer_email?: string | null
+          customer_name?: string | null
+          id?: string
+          occurred_at?: string
+          revenue?: number
+          status?: string
+          template_id?: string | null
+          variant?: string | null
+        }
+        Relationships: []
+      }
+      shopify_webhook_events: {
+        Row: {
+          id: string
+          payload: Json
+          received_at: string
+          shop_domain: string | null
+          topic: string
+        }
+        Insert: {
+          id?: string
+          payload?: Json
+          received_at?: string
+          shop_domain?: string | null
+          topic: string
+        }
+        Update: {
+          id?: string
+          payload?: Json
+          received_at?: string
+          shop_domain?: string | null
+          topic?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
