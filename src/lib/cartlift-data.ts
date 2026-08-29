@@ -963,3 +963,99 @@ export const messageTemplates: MessageTemplate[] = [
     atualizadoEm: "20/08 11:05",
   },
 ];
+
+/* ---------------------------------------------------------------- */
+/* Testes A/B de envio                                              */
+/* ---------------------------------------------------------------- */
+
+export type AbVariantStats = {
+  templateId: string;
+  rotulo: "A" | "B";
+  nome: string;
+  enviados: number;
+  entregues: number;
+  cliques: number;
+  respostas: number;
+  compras: number;
+  receita: number;
+};
+
+export type AbExperiment = {
+  id: string;
+  nome: string;
+  canal: SendChannel;
+  etapa: string;
+  status: "rodando" | "pausado" | "encerrado";
+  inicio: string;
+  divisao: number; // % do tráfego enviado para a variante A
+  variantes: [AbVariantStats, AbVariantStats];
+};
+
+export const abExperiments: AbExperiment[] = [
+  {
+    id: "ab-email-1h",
+    nome: "Lembrete 1h — gentil x direto",
+    canal: "E-mail",
+    etapa: "Etapa 1 · 1h após o abandono",
+    status: "rodando",
+    inicio: "18/08",
+    divisao: 50,
+    variantes: [
+      {
+        templateId: "tpl-email-1",
+        rotulo: "A",
+        nome: "Lembrete gentil (1ª hora)",
+        enviados: 412,
+        entregues: 402,
+        cliques: 118,
+        respostas: 21,
+        compras: 34,
+        receita: 8420.5,
+      },
+      {
+        templateId: "tpl-email-2",
+        rotulo: "B",
+        nome: "Última chance (72h)",
+        enviados: 408,
+        entregues: 396,
+        cliques: 92,
+        respostas: 14,
+        compras: 25,
+        receita: 6180.9,
+      },
+    ],
+  },
+  {
+    id: "ab-whats-24h",
+    nome: "WhatsApp 24h — cupom x frete grátis",
+    canal: "WhatsApp",
+    etapa: "Etapa 2 · 24h após o abandono",
+    status: "rodando",
+    inicio: "20/08",
+    divisao: 60,
+    variantes: [
+      {
+        templateId: "tpl-whats-1",
+        rotulo: "A",
+        nome: "WhatsApp com cupom (24h)",
+        enviados: 246,
+        entregues: 240,
+        cliques: 96,
+        respostas: 58,
+        compras: 31,
+        receita: 7310.2,
+      },
+      {
+        templateId: "tpl-whats-2",
+        rotulo: "B",
+        nome: "WhatsApp foco em frete grátis",
+        enviados: 164,
+        entregues: 160,
+        cliques: 71,
+        respostas: 44,
+        compras: 24,
+        receita: 5940.4,
+      },
+    ],
+  },
+];

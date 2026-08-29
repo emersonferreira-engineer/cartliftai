@@ -21,6 +21,8 @@ import { Route as PainelRelatorioRouteImport } from './routes/painel.relatorio'
 import { Route as PainelSegurancaRouteImport } from './routes/painel.seguranca'
 import { Route as PainelShopifyRouteImport } from './routes/painel.shopify'
 import { Route as PainelTemplatesRouteImport } from './routes/painel.templates'
+import { Route as PainelTestesAbRouteImport } from './routes/painel.testes-ab'
+import { Route as PainelVariacoesRouteImport } from './routes/painel.variacoes'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -82,6 +84,16 @@ const PainelTemplatesRoute = PainelTemplatesRouteImport.update({
   path: '/templates',
   getParentRoute: () => PainelRoute,
 } as any)
+const PainelTestesAbRoute = PainelTestesAbRouteImport.update({
+  id: '/testes-ab',
+  path: '/testes-ab',
+  getParentRoute: () => PainelRoute,
+} as any)
+const PainelVariacoesRoute = PainelVariacoesRouteImport.update({
+  id: '/variacoes',
+  path: '/variacoes',
+  getParentRoute: () => PainelRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -95,6 +107,8 @@ export interface FileRoutesByFullPath {
   '/painel/seguranca': typeof PainelSegurancaRoute
   '/painel/shopify': typeof PainelShopifyRoute
   '/painel/templates': typeof PainelTemplatesRoute
+  '/painel/testes-ab': typeof PainelTestesAbRoute
+  '/painel/variacoes': typeof PainelVariacoesRoute
   '/painel/': typeof PainelIndexRoute
 }
 export interface FileRoutesByTo {
@@ -108,6 +122,8 @@ export interface FileRoutesByTo {
   '/painel/seguranca': typeof PainelSegurancaRoute
   '/painel/shopify': typeof PainelShopifyRoute
   '/painel/templates': typeof PainelTemplatesRoute
+  '/painel/testes-ab': typeof PainelTestesAbRoute
+  '/painel/variacoes': typeof PainelVariacoesRoute
   '/painel': typeof PainelIndexRoute
 }
 export interface FileRoutesById {
@@ -123,6 +139,8 @@ export interface FileRoutesById {
   '/painel/seguranca': typeof PainelSegurancaRoute
   '/painel/shopify': typeof PainelShopifyRoute
   '/painel/templates': typeof PainelTemplatesRoute
+  '/painel/testes-ab': typeof PainelTestesAbRoute
+  '/painel/variacoes': typeof PainelVariacoesRoute
   '/painel/': typeof PainelIndexRoute
 }
 export interface FileRouteTypes {
@@ -139,6 +157,8 @@ export interface FileRouteTypes {
     | '/painel/seguranca'
     | '/painel/shopify'
     | '/painel/templates'
+    | '/painel/testes-ab'
+    | '/painel/variacoes'
     | '/painel/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -152,6 +172,8 @@ export interface FileRouteTypes {
     | '/painel/seguranca'
     | '/painel/shopify'
     | '/painel/templates'
+    | '/painel/testes-ab'
+    | '/painel/variacoes'
     | '/painel'
   id:
     | '__root__'
@@ -166,6 +188,8 @@ export interface FileRouteTypes {
     | '/painel/seguranca'
     | '/painel/shopify'
     | '/painel/templates'
+    | '/painel/testes-ab'
+    | '/painel/variacoes'
     | '/painel/'
   fileRoutesById: FileRoutesById
 }
@@ -260,6 +284,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PainelTemplatesRouteImport
       parentRoute: typeof PainelRoute
     }
+    '/painel/testes-ab': {
+      id: '/painel/testes-ab'
+      path: '/testes-ab'
+      fullPath: '/painel/testes-ab'
+      preLoaderRoute: typeof PainelTestesAbRouteImport
+      parentRoute: typeof PainelRoute
+    }
+    '/painel/variacoes': {
+      id: '/painel/variacoes'
+      path: '/variacoes'
+      fullPath: '/painel/variacoes'
+      preLoaderRoute: typeof PainelVariacoesRouteImport
+      parentRoute: typeof PainelRoute
+    }
   }
 }
 
@@ -273,6 +311,8 @@ interface PainelRouteChildren {
   PainelSegurancaRoute: typeof PainelSegurancaRoute
   PainelShopifyRoute: typeof PainelShopifyRoute
   PainelTemplatesRoute: typeof PainelTemplatesRoute
+  PainelTestesAbRoute: typeof PainelTestesAbRoute
+  PainelVariacoesRoute: typeof PainelVariacoesRoute
   PainelIndexRoute: typeof PainelIndexRoute
 }
 
@@ -286,6 +326,8 @@ const PainelRouteChildren: PainelRouteChildren = {
   PainelSegurancaRoute: PainelSegurancaRoute,
   PainelShopifyRoute: PainelShopifyRoute,
   PainelTemplatesRoute: PainelTemplatesRoute,
+  PainelTestesAbRoute: PainelTestesAbRoute,
+  PainelVariacoesRoute: PainelVariacoesRoute,
   PainelIndexRoute: PainelIndexRoute,
 }
 
